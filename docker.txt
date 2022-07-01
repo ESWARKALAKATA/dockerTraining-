@@ -1,0 +1,85 @@
+docker pull centos
+
+# run the container for the first time 
+docker run -d -t --name mycentoscontainer centos
+
+# to access the bash of cent os container 
+docker exec -it mycentoscontainer bash 
+		[ it -> "i" means interactive  ] 
+
+# to get out from the container 
+
+exit 
+
+# to list out current running container's 
+
+docker ps
+
+
+#Spinning another container 
+docker pull alpine 
+docker run -d -t --name myalpinecontainer  alpine
+docker exec -it myalpinecontainer sh
+
+
+# Pulling an image from Docker Hub ( from public repo ) 
+
+sudo docker pull thenetworkchuck/nccoffee:frenchpress
+
+
+
+
+
+# Run container on port 80 ( this made the site in the container be avalible from the port 80 ) 
+
+docker run -t -d -p 80:80 --name nccoffee thenetworkchuck/nccoffee:frenchpress
+
+		docker run -t -d -p 80:80 ( [ 80:80 forHOst:dockercontainer ] )
+
+
+# stop the container 
+docker stop mycentoscontainer
+
+# start the container
+docker start mycentoscontainer
+
+
+# to check the Memory and Cpu also you see I/o speed of all running cointainer's 
+docker stats 
+
+--------------------------------------x----------------------------------
+
+-d -> container in back ground 
+
+-p -> port setting 
+
+
+docker ps -a  [ list out all containers ]
+
+
+docker rm containerName [ for to delete the contianer ]
+
+docker system prune [  [ for to delete All of the contianers ]
+
+docker rm -f ContainerNameOrId  [ -f flag with ( rm ) make container to be deleted even while it is running ]
+
+
+
+
+
+-------------------------------------x-------------------------------------
+# copying the files 
+docker cp <source> <dest>   [ ex :-  docker cp containerName:text.txt localMachine.txt ]
+	above command copy the data from container to local machine 
+
+# to commit changes in docker 
+
+docker commit ContainerNameOrId  foldername/imagename:version3  
+	docker commit nccoffee  dockerimages/networkchuk:version1  
+
+# to check Commited images 
+
+docker images 
+
+
+
